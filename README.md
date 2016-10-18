@@ -5,9 +5,10 @@
 1. clone the project 
 2. run ``composer install``
 3. create ``.env`` file (have a look at ``.env.example``) and enter your db connection
-4. run ``php artisan migrate``
-5. run ``php artisan key:generate``
-6. run ``bower install`` in ``/resources``
+4. create ``bootstrap/cache`` directory
+5. run ``php artisan migrate``
+6. run ``php artisan key:generate``
+7. run ``bower install`` in ``/resources``
 
 ## Template
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -27,6 +28,8 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/dashboard';
 
+    protected $redirectAfterLogout = '/login';
+
     /**
      * Create a new controller instance.
      *
@@ -40,5 +43,21 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('pages.auth.login');
+    }
+
+    public function doLogin(Request $request)
+    {
+        $request->flashOnly('email');
+        return $this->login($request);
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect($this->redirectAfterLogout);
     }
 }

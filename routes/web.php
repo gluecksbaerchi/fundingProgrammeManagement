@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm');
-Route::post('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@doLogin');
 Route::get('logout', 'Auth\LoginController@logout');
 
 

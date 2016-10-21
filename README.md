@@ -10,6 +10,9 @@
 6. run ``php artisan key:generate``
 7. run ``bower install`` in ``/resources``
 
+8. run ``php artisan db:seed`` (if you get the message " This cache store does not support tagging.
+", set ``CACHE_DRIVER=array`` in your ``.env`` file)
+
 ## Template
 
 using https://startbootstrap.com/template-overviews/sb-admin-2/

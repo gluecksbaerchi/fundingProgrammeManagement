@@ -12,16 +12,22 @@ class AuthSeeder extends Seeder
     public function run()
     {
         // create roles
-        $userRole = new \App\Models\Role();
-        $userRole->name         = 'user';
-        $userRole->display_name = 'Nutzer';
-        $userRole->description  = 'Nutzer kann Förderprojekte ansehen und verwalten.';
-        $userRole->save();
+        $guestRole = new \App\Models\Role();
+        $guestRole->name         = 'guest';
+        $guestRole->display_name = 'Guest';
+        $guestRole->description  = 'can only see funding programmes and categories';
+        $guestRole->save();
+
+        $employeeRole = new \App\Models\Role();
+        $employeeRole->name         = 'employee';
+        $employeeRole->display_name = 'Employee';
+        $employeeRole->description = 'is allowed to create/edit funding programmes and categories';
+        $employeeRole->save();
 
         $adminRole = new \App\Models\Role();
         $adminRole->name         = 'admin';
-        $adminRole->display_name = 'Nutzer Administrator';
-        $adminRole->description  = 'Nutzer kann andere Nutzer anlegen und verwalten.';
+        $adminRole->display_name = 'Admin';
+        $adminRole->description  = 'is allowed to create and edit users, delete funding programmes and categories';
         $adminRole->save();
 
         // create admin user
@@ -33,25 +39,84 @@ class AuthSeeder extends Seeder
         $user->attachRole($adminRole);
 
         // create permissions
+        /******************************************
+         * FUNDING PROGRAMMES
+         ******************************************/
         $viewFundingProgrammes = new \App\Models\Permission();
-        $viewFundingProgrammes->name         = 'view-funding-programme';
+        $viewFundingProgrammes->name         = 'view-funding-programmes';
         $viewFundingProgrammes->display_name = 'View Funding Programmes';
         $viewFundingProgrammes->description  = 'view funding programmes';
         $viewFundingProgrammes->save();
 
         $createFundingProgrammes = new \App\Models\Permission();
-        $createFundingProgrammes->name         = 'create-funding-programme';
+        $createFundingProgrammes->name         = 'create-funding-programmes';
         $createFundingProgrammes->display_name = 'Create / Edit Funding Programme';
         $createFundingProgrammes->description  = 'create and edit funding programmes';
         $createFundingProgrammes->save();
 
+        $deleteFundingProgrammes = new \App\Models\Permission();
+        $deleteFundingProgrammes->name         = 'delete-funding-programmes';
+        $deleteFundingProgrammes->display_name = 'Delete Funding Programme';
+        $deleteFundingProgrammes->description  = 'delete funding programmes';
+        $deleteFundingProgrammes->save();
+
+        /******************************************
+         * CATEGORIES
+         ******************************************/
+        $viewCategories = new \App\Models\Permission();
+        $viewCategories->name         = 'view-categories';
+        $viewCategories->display_name = 'View Categories';
+        $viewCategories->description  = 'view categories';
+        $viewCategories->save();
+
+        $createCategories = new \App\Models\Permission();
+        $createCategories->name         = 'create-categories';
+        $createCategories->display_name = 'Create / Edit Categories';
+        $createCategories->description  = 'create and edit categories';
+        $createCategories->save();
+
+        $deleteCategories = new \App\Models\Permission();
+        $deleteCategories->name         = 'delete-categories';
+        $deleteCategories->display_name = 'Delete Categories';
+        $deleteCategories->description  = 'delete categories';
+        $deleteCategories->save();
+
+        /******************************************
+         * USER HANDLING
+         ******************************************/
         $editUser = new \App\Models\Permission();
-        $editUser->name         = 'edit-user';
-        $editUser->display_name = 'Edit / Create Users';
-        $editUser->description  = 'edit existing users and create new users';
+        $editUser->name         = 'user-management';
+        $editUser->display_name = 'View / Delete / Edit / Create Users';
+        $editUser->description  = 'view all users, edit or delete existing users and create new users';
         $editUser->save();
 
-        $userRole->attachPermissions([$viewFundingProgrammes, $createFundingProgrammes]);
-        $adminRole->attachPermissions([$viewFundingProgrammes, $createFundingProgrammes, $editUser]);
+        $editProfile = new \App\Models\Permission();
+        $editProfile->name         = 'edit-profile';
+        $editProfile->display_name = 'Edit Profile';
+        $editProfile->description  = 'edit own user data';
+        $editProfile->save();
+
+        $guestRole->attachPermissions([
+            $viewFundingProgrammes,
+            $viewCategories,
+            $editProfile
+        ]);
+        $employeeRole->attachPermissions([
+            $viewFundingProgrammes,
+            $createFundingProgrammes,
+            $viewCategories,
+            $createCategories,
+            $editProfile
+        ]);
+        $adminRole->attachPermissions([
+            $viewFundingProgrammes,
+            $createFundingProgrammes,
+            $deleteFundingProgrammes,
+            $viewCategories,
+            $createCategories,
+            $deleteCategories,
+            $editUser,
+            $editProfile
+        ]);
     }
 }

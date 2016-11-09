@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
@@ -27,4 +28,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getRole()
+    {
+        $roleId = DB::table('role_user')->where('user_id', '=', $this->id)->pluck('role_id');
+        return  count($roleId) > 0 ? Role::find($roleId) : new Role();
+    }
 }

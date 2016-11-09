@@ -1,5 +1,11 @@
 <?php
 
 return [
-   'title' => 'Förderdatenbank'
+   'title' => 'Förderdatenbank',
+
+    'buttons' => [
+        'save' => 'Speichern',
+        'cancel' => 'Abbrechen',
+        'delete' => 'Löschen',
+    ]
 ];

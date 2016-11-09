@@ -21,5 +21,11 @@ return [
     'name' => 'Username',
     'password' => 'Passwort',
     'remember_me' => 'Eingeloggt bleiben',
-    'login' => 'Login'
+    'login' => 'Login',
+
+    'roles' => [
+        'admin' => 'Administrator',
+        'employee' => 'Mitarbeiter',
+        'guest' => 'Gast'
+    ]
 ];

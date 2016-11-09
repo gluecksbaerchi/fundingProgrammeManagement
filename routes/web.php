@@ -12,14 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('funding_programmes');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@doLogin');
 Route::get('logout', 'Auth\LoginController@logout');
 
+Route::get('funding_programmes', 'FundingProgrammesController@show')->middleware('auth');
+Route::get('categories', 'CategoriesController@show')->middleware('auth');
 
-Route::get('dashboard', function () {
-    return view('pages.dashboard.index');
-})->middleware('auth');
+Route::group(['middleware' => ['role:admin', 'permission:user-management']], function() {
+    Route::get('users', 'UsersController@show');
+    Route::get('users/edit/{id}', 'UsersController@edit');
+    Route::get('users/delete/{id}', 'UsersController@delete');
+});

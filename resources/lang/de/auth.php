@@ -18,6 +18,7 @@ return [
 
     'sign_in' => 'Bitte loggen Sie sich ein',
     'email' => 'E-mail',
+    'name' => 'Username',
     'password' => 'Passwort',
     'remember_me' => 'Eingeloggt bleiben',
     'login' => 'Login'

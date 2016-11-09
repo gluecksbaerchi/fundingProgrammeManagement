@@ -21,9 +21,9 @@
                             {{ csrf_field() }}
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="{{trans('auth.email')}}" name="email" type="email"
-                                           @if(isset(session('_old_input')['email']))
-                                            value="{{ session('_old_input')['email'] }}"
+                                    <input class="form-control" placeholder="{{trans('auth.name')}}" name="name" type="text"
+                                           @if(isset(session('_old_input')['name']))
+                                            value="{{ session('_old_input')['name'] }}"
                                            @else
                                             autofocus
                                            @endif>

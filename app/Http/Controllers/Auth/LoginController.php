@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/funding_programmes';
 
     protected $redirectAfterLogout = '/login';
 
@@ -49,6 +49,11 @@ class LoginController extends Controller
     {
         $request->flashOnly('email');
         return $this->login($request);
+    }
+
+    public function username()
+    {
+        return 'name';
     }
 
     public function logout(Request $request)

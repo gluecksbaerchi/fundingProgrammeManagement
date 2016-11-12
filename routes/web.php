@@ -20,7 +20,11 @@ Route::post('login', 'Auth\LoginController@doLogin');
 Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('funding_programmes', 'FundingProgrammesController@show')->middleware('auth');
-Route::get('categories', 'CategoriesController@show')->middleware('auth');
+
+Route::get('categories', 'CategoriesController@show')->middleware(['auth', 'permission:view-categories']);
+Route::get('categories/{id}/edit', 'CategoriesController@edit')->middleware(['auth', 'permission:create-categories']);
+Route::post('categories/{id}/edit', 'CategoriesController@save')->middleware(['auth', 'permission:create-categories']);
+Route::get('categories/{category}/delete', 'CategoriesController@delete')->middleware(['auth', 'permission:delete-categories']);
 
 Route::group(['middleware' => ['auth', 'role:admin', 'permission:user-management']], function() {
     Route::get('users', 'UsersController@show');

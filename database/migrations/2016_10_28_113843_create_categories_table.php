@@ -16,7 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable(false);
-            $table->unsignedInteger('parent_id');
+            $table->unsignedInteger('parent_id')->nullable(true);
             $table->timestamps();
 
             $table->foreign('parent_id')->references('id')->on('categories')

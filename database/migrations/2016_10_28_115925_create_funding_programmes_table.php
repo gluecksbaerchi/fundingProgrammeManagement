@@ -16,17 +16,17 @@ class CreateFundingProgrammesTable extends Migration
         Schema::create('funding_programmes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id');
-            $table->unsignedInteger('contact_id');
+            $table->unsignedInteger('contact_id')->nullable();
             $table->string('name');
             $table->string('organisation');
-            $table->string('target_what');
-            $table->text('target_what_description');
-            $table->text('target_who');
-            $table->text('funding_sum');
-            $table->text('application');
-            $table->dateTime('runtime_from');
-            $table->dateTime('runtime_to');
-            $table->string('link');
+            $table->string('target_what')->nullable();
+            $table->text('target_what_description')->nullable();
+            $table->text('target_who')->nullable();
+            $table->text('funding_sum')->nullable();
+            $table->text('application')->nullable();
+            $table->dateTime('runtime_from')->nullable();
+            $table->dateTime('runtime_to')->nullable();
+            $table->string('link')->nullable();
             $table->unsignedInteger('user_id');
             $table->timestamps();
 

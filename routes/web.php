@@ -19,7 +19,11 @@ Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@doLogin');
 Route::get('logout', 'Auth\LoginController@logout');
 
-Route::get('funding_programmes', 'FundingProgrammesController@show')->middleware('auth');
+Route::get('funding_programmes', 'FundingProgrammesController@show')->middleware(['auth', 'permission:view-funding-programmes']);
+Route::get('funding_programmes/{id}/edit', 'FundingProgrammesController@edit')->middleware(['auth', 'permission:create-funding-programmes']);
+Route::post('funding_programmes/{id}/edit', 'FundingProgrammesController@save')->middleware(['auth', 'permission:create-funding-programmes']);
+Route::get('funding_programmes/{fundingProgramme}/delete', 'FundingProgrammesController@delete')->middleware(['auth', 'permission:delete-funding-programmes']);
+
 
 Route::get('categories', 'CategoriesController@show')->middleware(['auth', 'permission:view-categories']);
 Route::get('categories/{id}/edit', 'CategoriesController@edit')->middleware(['auth', 'permission:create-categories']);

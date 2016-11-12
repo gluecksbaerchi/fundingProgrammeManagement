@@ -19,6 +19,10 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('../resources/dist/css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{asset('../resources/assets/css/style.css')}}" rel="stylesheet">
+
+    <link href="{{asset('../resources/bower_components/datatables/media/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset('../resources/bower_components/datatables-responsive/css/dataTables.responsive.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{{asset('../resources/bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
@@ -39,7 +43,21 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{asset('../resources/dist/js/sb-admin-2.js')}}"></script>
-    <![endif]-->
+
+    <!-- DataTables JavaScript -->
+    <script src="{{asset('../resources/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('../resources/bower_components/datatables/media/js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('../resources/bower_components/datatables-responsive/js/dataTables.responsive.js')}}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#usersTable').dataTable( {
+                "language": {
+                    "url": "{{asset('../resources/lang/de/dataTables.lang')}}"
+                }
+            } );
+        });
+    </script>
 </head>
 <body>
 <div class="flex-center position-ref full-height">

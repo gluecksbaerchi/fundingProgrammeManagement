@@ -3,8 +3,6 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-            {{--<a class="navbar-brand" href="funding_programmes" style="padding-top: 0px;">--}}
-                {{--<img src="../resources/images/logo/logo.png" style="height: 50px; width: 160px;">--}}
             </a><a class="navbar-brand" href="{{url('funding_programmes')}}">
                 Förderdatenbank
             </a>
@@ -28,15 +26,21 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="{{url('users')}}"><i class="fa fa-users fa-fw"></i> Benutzerverwaltung</a>
-                    </li>
+                    @if (Entrust::ability('admin,employee,guest', 'view-funding-programmes'))
                     <li>
                         <a href="{{url('funding_programmes')}}"><i class="fa fa-tasks fa-fw"></i> Förderprogramme</a>
                     </li>
+                    @endif
+                    @if (Entrust::ability('admin,employee,guest', 'view-categories'))
                     <li>
                         <a href="{{url('categories')}}"><i class="fa fa-tags fa-fw"></i> Kategorien</a>
                     </li>
+                    @endif
+                    @if (Entrust::ability('admin', 'user-management'))
+                    <li>
+                        <a href="{{url('users')}}"><i class="fa fa-users fa-fw"></i> Benutzerverwaltung</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>

@@ -8,5 +8,9 @@ return [
     'username' => 'Username',
     'password' => 'Passwort',
     'password2' => 'Passwort wiederholen',
-    'role' => 'Rolle'
+    'role' => 'Rolle',
+    'deleteUserModal' => [
+        'title' => 'Benutzer löschen',
+        'body' => 'User ":name" wirklich löschen?'
+    ]
 ];

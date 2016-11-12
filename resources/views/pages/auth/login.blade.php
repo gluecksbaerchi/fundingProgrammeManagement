@@ -37,7 +37,7 @@
                                         <input name="remember" type="checkbox" value="Remember Me">{{trans('auth.remember_me')}}
                                     </label>
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-success btn-block">{{trans('auth.login')}}</button>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">{{trans('auth.login')}}</button>
                             </fieldset>
                         </form>
                     </div>

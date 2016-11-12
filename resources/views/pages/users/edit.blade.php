@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6 col-lg-5">
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>

@@ -17,16 +17,17 @@ class UsersController extends Controller
 {
     public function show()
     {
-        return view('pages.users.index');
+        $users = User::all();
+        return view('pages.users.index', ['users' => $users]);
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $user = ($id !== '0') ? User::findOrFail($id) : new User();
-        if (isset(session('_old_input')['name'])) {
-            $user->name = session('_old_input')['name'];
+        if ($request->old('name')) {
+            $user->name = $request->old('name');
         }
-        $userRole = session('_old_input')['role'] ? session('_old_input')['role'] : $user->getRole();
+        $userRole = $request->old('role') ? $request->old('role') : $user->getRole()->name;
         $roles = Role::all()->pluck('name');
         return view('pages.users.edit', ['user' => $user, 'userRole' => $userRole, 'roles' => $roles]);
     }
@@ -46,14 +47,14 @@ class UsersController extends Controller
             ->first();
         if ($user != null) {
             return redirect()->to('users/'.$id.'/edit')
-                ->withErrors(['Username already exists.']);
+                ->withErrors([trans('error.duplicate_username')]);
         }
 
         // find the role for the user
         $role = Role::where('name', '=', Input::get('role'))->first();
         if ($role == null) {
             return redirect()->to('users/'.$id.'/edit')
-                ->withErrors(['Invalid role.']);
+                ->withErrors([trans('error.invalid_role')]);
         }
 
         // save user
@@ -64,6 +65,19 @@ class UsersController extends Controller
         $user->detachRoles();
         $user->attachRole($role);
 
-        return view('pages.users.index');
+        return redirect()->to('users');
+    }
+
+    public function delete(User $user)
+    {
+        if (\Auth::user()->id == $user->id) {
+            return redirect()->to('users')
+                ->withErrors([trans('error.not_allowed_delete_own_user')]);
+        }
+
+        $user->detachRoles();
+        $user->delete();
+
+        return redirect()->to('users');
     }
 }

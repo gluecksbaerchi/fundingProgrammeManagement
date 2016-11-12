@@ -1,0 +1,30 @@
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #7FC241;
+    border-color: #7FC241;
+}
+
+a {
+    color: #67aa29
+}
+
+a:hover, a:focus {
+    color: #54911b
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #7FC241;
+    border-color: #79b740;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:active:focus{
+    color: #fff;
+    background-color: #79b740;
+    border-color: #79b740;
+}
+
+.form-control:focus {
+    border-color: #7FC241;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(111,170,56,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(111,170,56,.6);
+}

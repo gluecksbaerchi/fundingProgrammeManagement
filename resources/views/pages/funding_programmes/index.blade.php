@@ -45,7 +45,7 @@
                         <td>{{$fundingProgramme->category_id}}</td>
                         <td>{{$fundingProgramme->name}}</td>
                         <td>{{$fundingProgramme->organisation}}</td>
-                        <td>@foreach($fundingProgramme->target_what as $cost) {{$cost}} <br/>@endforeach</td>
+                        <td>@if ($fundingProgramme->target_what) @foreach($fundingProgramme->target_what as $cost) {{$cost}} <br/>@endforeach @endif</td>
                         <td>{{$fundingProgramme->link}}</td>
                         <td>
                             @if (Entrust::can('create-funding-programmes'))

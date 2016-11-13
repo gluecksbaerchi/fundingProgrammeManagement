@@ -24,6 +24,10 @@ Route::get('funding_programmes/{id}/edit', 'FundingProgrammesController@edit')->
 Route::post('funding_programmes/{id}/edit', 'FundingProgrammesController@save')->middleware(['auth', 'permission:create-funding-programmes']);
 Route::get('funding_programmes/{fundingProgramme}/delete', 'FundingProgrammesController@delete')->middleware(['auth', 'permission:delete-funding-programmes']);
 
+Route::get('contacts', 'ContactsController@show')->middleware(['auth', 'permission:view-funding-programmes']);
+Route::get('contacts/{id}/edit', 'ContactsController@edit')->middleware(['auth', 'permission:create-funding-programmes']);
+Route::post('contacts/{id}/edit', 'ContactsController@save')->middleware(['auth', 'permission:create-funding-programmes']);
+Route::get('contacts/{contact}/delete', 'ContactsController@delete')->middleware(['auth', 'permission:delete-funding-programmes']);
 
 Route::get('categories', 'CategoriesController@show')->middleware(['auth', 'permission:view-categories']);
 Route::get('categories/{id}/edit', 'CategoriesController@edit')->middleware(['auth', 'permission:create-categories']);

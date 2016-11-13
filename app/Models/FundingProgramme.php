@@ -38,4 +38,9 @@ class FundingProgramme extends Model
     {
         return json_decode($value);
     }
+
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
+    }
 }

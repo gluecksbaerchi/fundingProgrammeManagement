@@ -23,5 +23,26 @@ return [
     'runtime_from' => 'von',
     'runtime_to' => 'bis',
     'link' => 'Internet',
-    'contact' => 'AP'
+    'contact' => 'Ansprechpartner',
+    'multiple_select_hint' => '(Für Mehrfachauswahl "Strg" gedrückt halten.)',
+    'deleteFundingProgrammeModal' => [
+        'title' => 'Förderprogramm löschen',
+        'body' => 'Möchten Sie das Förderprogramm ":name" wirklich löschen?'
+    ],
+    'contactModal' => [
+        'title' => 'Ansprechpartner',
+        'contact_list_btn' => 'Kontaktliste',
+        'new_contact_btn' => 'Neuen Kontakt anlegen'
+    ],
+    'contact_form' => [
+        'name' => 'Name',
+        'street' => 'Straße',
+        'street_nr' => 'Hausnummer',
+        'zip_code' => 'PLZ',
+        'city' => 'Stadt',
+        'tel' => 'Tel.',
+        'fax' => 'Fax',
+        'email' => 'E-Mail',
+        'internet' => 'Internet'
+    ]
 ];

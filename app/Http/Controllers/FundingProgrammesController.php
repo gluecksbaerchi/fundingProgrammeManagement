@@ -22,6 +22,11 @@ class FundingProgrammesController extends Controller
         return view('pages.funding_programmes.index', ['fundingProgrammes' => $fundingProgrammes]);
     }
 
+    public function detail(FundingProgramme $fundingProgramme)
+    {
+        return view('pages.funding_programmes.detail', ['fundingProgramme' => $fundingProgramme]);
+    }
+
     public function edit(Request $request, $id)
     {
         $targetWhatOptions = [

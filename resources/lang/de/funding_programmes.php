@@ -4,6 +4,7 @@ return [
     'title' => 'Förderprogramme',
     'title_edit' => 'Förderprogramm bearbeiten',
     'title_new' => 'Förderprogramm erstellen',
+    'title_detail' => 'Detailansicht',
     'add_funding_programme' => 'Förderprogramm hinzufügen',
     'costs' => [
         'fee' => 'Honorarkosten',

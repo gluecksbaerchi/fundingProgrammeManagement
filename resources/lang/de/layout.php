@@ -10,6 +10,7 @@ return [
         'edit' => 'Bearbeiten',
         'add' => 'Hinzufügen',
         'choose' => 'Auswählen',
-        'take' => 'Übernehmen'
+        'take' => 'Übernehmen',
+        'view' => 'Ansehen'
     ]
 ];

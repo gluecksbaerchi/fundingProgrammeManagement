@@ -48,6 +48,12 @@
                         <td>@if ($fundingProgramme->target_what) @foreach($fundingProgramme->target_what as $cost) {{$cost}} <br/>@endforeach @endif</td>
                         <td>{{$fundingProgramme->link}}</td>
                         <td>
+                            @if (Entrust::can('view-funding-programmes'))
+                                <a class="btn btn-default" title="{{trans('layout.buttons.view')}}"
+                                   href="{{url('funding_programmes/'.$fundingProgramme->id)}}">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            @endif
                             @if (Entrust::can('create-funding-programmes'))
                             <a class="btn btn-default" title="{{trans('layout.buttons.edit')}}"
                                href="{{url('funding_programmes/'.$fundingProgramme->id.'/edit')}}">
@@ -62,25 +68,7 @@
                             @endif
                         </td>
                     </tr>
-                    <div class="modal fade" id="deleteFundingProgrammeModal{{$fundingProgramme->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">{{trans('funding_programmes.deleteFundingProgrammeModal.title')}}</h4>
-                                </div>
-                                <div class="modal-body">
-                                    {{trans('funding_programmes.deleteFundingProgrammeModal.body', ['name' => $fundingProgramme->name])}}
-                                </div>
-                                <div class="modal-footer">
-                                    <a type="button" class="btn btn-primary"
-                                       href="{{url('funding_programmes/'.$fundingProgramme->id.'/delete')}}"
-                                    >{{trans('layout.buttons.delete')}}</a>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('layout.buttons.cancel')}}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @include('pages.funding_programmes.delete_modal')
                 @endforeach
                 </tbody>
             </table>

@@ -46,7 +46,7 @@
         </div>
     </nav>
 
-    <div id="page-wrapper" style="min-height: 923px;">
+    <div id="page-wrapper" style="min-height: 923px; padding-bottom: 20px">
         @yield('page_content')
     </div>
 @stop

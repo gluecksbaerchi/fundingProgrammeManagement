@@ -47,14 +47,13 @@ class FundingProgrammesController extends Controller
         $request->flash();
         // todo: validation
         $this->validate($request, [
-            'name' => 'required|max:255'
+            'name' => 'required|max:255',
+            'organisation' => 'required|max:255'
         ]);
 
         $fundingProgramme = ($id !== '0') ? FundingProgramme::findOrFail($id) : new FundingProgramme();
         $fundingProgramme->fill(Input::all());
         $fundingProgramme->user_id = \Auth::user()->id;
-        $fundingProgramme->runtime_from =  new \DateTime(Input::get('runtime_from'));
-        $fundingProgramme->runtime_to =  new \DateTime(Input::get('runtime_to'));
         $fundingProgramme->saveOrFail();
 
         return redirect()->to('funding_programmes');
@@ -62,6 +61,7 @@ class FundingProgrammesController extends Controller
 
     public function delete(FundingProgramme $fundingProgramme)
     {
-
+        $fundingProgramme->delete();
+        return redirect()->to('funding_programmes');
     }
 }

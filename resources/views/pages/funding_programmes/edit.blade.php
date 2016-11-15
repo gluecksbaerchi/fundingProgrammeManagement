@@ -84,17 +84,14 @@
                         <div class="form-group">
                             <label>{{trans('funding_programmes.runtime')}}</label>
                             <div class="row">
-                                <div class="col-md-2">
-                                    {{trans('funding_programmes.runtime_from')}}
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <input name="runtime_from" class="form-control datepicker"
                                            @if ($fundingProgramme->runtime_from) value="{{date('d.m.Y', strtotime($fundingProgramme->runtime_from))}}" @endif>
                                 </div>
-                                <div class="col-md-2">
-                                    {{trans('funding_programmes.runtime_to')}}
+                                <div class="col-md-2" style="text-align: center;">
+                                    -
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <input name="runtime_to" class="form-control datepicker"
                                            @if ($fundingProgramme->runtime_to) value="{{date('d.m.Y', strtotime($fundingProgramme->runtime_to))}}" @endif>
                                 </div>

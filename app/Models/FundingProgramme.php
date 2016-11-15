@@ -34,6 +34,21 @@ class FundingProgramme extends Model
         $this->attributes['target_what'] = json_encode($value);
     }
 
+    public function setRuntimeFromAttribute($value)
+    {
+        $this->attributes['runtime_from'] = empty($value) ? null : new \DateTime($value);
+    }
+
+    public function setRuntimeToAttribute($value)
+    {
+        $this->attributes['runtime_to'] = empty($value) ? null : new \DateTime($value);
+    }
+
+    public function setContactIdAttribute($value)
+    {
+        $this->attributes['contact_id'] = empty($value) ? null : $value;
+    }
+
     public function getTargetWhatAttribute($value)
     {
         return json_decode($value);
@@ -42,5 +57,20 @@ class FundingProgramme extends Model
     public function contact()
     {
         return $this->belongsTo(Contact::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function isOutdated()
+    {
+        if ($this->runtime_to != null) {
+            $now = new \DateTime();
+            $runtimeTo = new \DateTime($this->runtime_to);
+            return $runtimeTo < $now;
+        }
+        return false;
     }
 }

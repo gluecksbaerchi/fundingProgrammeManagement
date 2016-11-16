@@ -13,6 +13,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('../resources/bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('../resources/bower_components/bootstrap-social/bootstrap-social.css')}}" rel="stylesheet">
+    <link href="{{asset('../resources/bower_components/bootstrap-select/dist/css/bootstrap-select.css')}}" rel="stylesheet">
     <link href="{{asset('../resources/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css')}}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
@@ -39,6 +40,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('../resources/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('../resources/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('../resources/bower_components/bootstrap-select/dist/js/bootstrap-select.js')}}"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{{asset('../resources/bower_components/metisMenu/dist/metisMenu.min.js')}}"></script>
@@ -50,16 +52,6 @@
     <script src="{{asset('../resources/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('../resources/bower_components/datatables/media/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{asset('../resources/bower_components/datatables-responsive/js/dataTables.responsive.js')}}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#usersTable').dataTable( {
-                "language": {
-                    "url": "{{asset('../resources/lang/de/dataTables.lang')}}"
-                }
-            } );
-        });
-    </script>
 </head>
 <body>
 <div class="flex-center position-ref full-height">

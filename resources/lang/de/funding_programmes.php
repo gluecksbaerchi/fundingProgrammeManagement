@@ -45,5 +45,7 @@ return [
         'fax' => 'Fax',
         'email' => 'E-Mail',
         'internet' => 'Internet'
-    ]
+    ],
+    'select_filter' => 'Filteroptionen auswählen',
+    'select' => 'Bitte wählen'
 ];

@@ -28,7 +28,7 @@
                     </ul>
                 </div>
             @endif
-            <table id="usersTable" class="table table-striped table-bordered table-hover">
+            <table id="categoriesTable" class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>{{trans('categories.name')}}</th>
@@ -80,4 +80,13 @@
             </table>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#categoriesTable').dataTable( {
+                "language": {
+                    "url": "{{asset('../resources/lang/de/dataTables.lang')}}"
+                }
+            } );
+        });
+    </script>
 @stop

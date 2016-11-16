@@ -23,6 +23,11 @@ class Category extends Model
         return $this->parent_id ? Category::find($this->parent_id) : new Category();
     }
 
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
     public function hasChildren()
     {
         if ($this->id == null) {

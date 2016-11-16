@@ -28,50 +28,61 @@
                     </ul>
                 </div>
             @endif
-            <table id="usersTable" class="table table-striped table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th>{{trans('funding_programmes.category')}}</th>
-                    <th>{{trans('funding_programmes.name')}}</th>
-                    <th>{{trans('funding_programmes.organisation')}}</th>
-                    <th>{{trans('funding_programmes.target_what')}}</th>
-                    <th>{{trans('funding_programmes.link')}}</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($fundingProgrammes as $fundingProgramme)
-                    <tr @if ($fundingProgramme->isOutdated()) style="background-color: #F2DEDE; color: #a94442;" @endif>
-                        <td>{{$fundingProgramme->category->name}}</td>
-                        <td>{{$fundingProgramme->name}}</td>
-                        <td>{{$fundingProgramme->organisation}}</td>
-                        <td>@if ($fundingProgramme->target_what) @foreach($fundingProgramme->target_what as $cost) {{$cost}} <br/>@endforeach @endif</td>
-                        <td>{{$fundingProgramme->link}}</td>
-                        <td>
-                            @if (Entrust::can('view-funding-programmes'))
-                                <a class="btn btn-default" title="{{trans('layout.buttons.view')}}"
-                                   href="{{url('funding_programmes/'.$fundingProgramme->id)}}">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                            @endif
-                            @if (Entrust::can('create-funding-programmes'))
-                            <a class="btn btn-default" title="{{trans('layout.buttons.edit')}}"
-                               href="{{url('funding_programmes/'.$fundingProgramme->id.'/edit')}}">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                            @endif
-                            @if (Entrust::can('delete-funding-programmes'))
-                                <button class="btn btn-default" title="{{trans('layout.buttons.delete')}}"
-                                        data-toggle="modal" data-target="#deleteFundingProgrammeModal{{$fundingProgramme->id}}">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            @endif
-                        </td>
-                    </tr>
-                    @include('pages.funding_programmes.delete_modal')
-                @endforeach
-                </tbody>
-            </table>
+            <form id="filterForm" action="{{url('funding_programmes/filter')}}">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{trans('funding_programmes.category')}}</label>
+                            <select name="category_id[]" multiple class="form-control selectpicker"
+                                    title="{{trans('funding_programmes.select_filter')}}" onchange="filterFundingProgrammes()">
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}"
+                                            @if (session('category_filter') && in_array($category->id, session('category_filter'))) selected @endif
+                                    >{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{trans('funding_programmes.target_what')}}</label>
+                            <select multiple name="target_what[]" class="form-control selectpicker"
+                                    title="{{trans('funding_programmes.select_filter')}}" onchange="filterFundingProgrammes()">
+                                @foreach ($targetWhatOptions as $targetWhatOption)
+                                    <option value="{{$targetWhatOption}}"
+                                            @if (session('target_what_filter') && in_array($targetWhatOption, session('target_what_filter'))) selected @endif
+                                    >{{$targetWhatOption}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div id="tablePlaceholder"></div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            filterFundingProgrammes();
+        });
+
+        var filterFundingProgrammes = function () {
+            var form = $('#filterForm');
+            $.post(form.attr('action'), form.serialize(), function (result) {
+                $('#tablePlaceholder').html(result);
+                initTable();
+            });
+        };
+
+        function initTable() {
+            $('#fundingProgrammesTable').dataTable( {
+                "language": {
+                    "url": "{{asset('../resources/lang/de/dataTables.lang')}}"
+                }
+            } );
+        }
+    </script>
 @stop

@@ -15,6 +15,7 @@ return [
         'add' => 'Hinzufügen',
         'choose' => 'Auswählen',
         'take' => 'Übernehmen',
-        'view' => 'Ansehen'
+        'view' => 'Ansehen',
+        'back' => 'Zurück'
     ]
 ];

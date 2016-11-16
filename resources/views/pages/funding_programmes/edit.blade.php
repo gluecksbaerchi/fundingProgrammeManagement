@@ -48,8 +48,7 @@
                         </div>
                         <div class="form-group">
                             <label>{{trans('funding_programmes.target_what')}}</label>
-                            <span style="margin-left: 5px; font-size: 12px">{{trans('funding_programmes.multiple_select_hint')}}</span>
-                            <select multiple name="target_what[]" class="form-control">
+                            <select multiple name="target_what[]" class="form-control selectpicker" title="{{trans('funding_programmes.select')}}">
                                 @foreach ($targetWhatOptions as $targetWhatOption)
                                     <option value="{{$targetWhatOption}}"
                                             @if ( $fundingProgramme->target_what != null && in_array($targetWhatOption, $fundingProgramme->target_what))

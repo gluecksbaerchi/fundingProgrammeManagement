@@ -17,6 +17,10 @@
                                 <i class="fa fa-pencil"></i>
                             </a>
                         @endif
+                            <a class="btn btn-default pull-right" title="{{trans('layout.buttons.back')}}"
+                               href="{{url('funding_programmes')}}">
+                                <i class="fa fa-arrow-left"></i>
+                            </a>
                         {{trans('funding_programmes.title_detail')}}
                     </div>
                 </div>

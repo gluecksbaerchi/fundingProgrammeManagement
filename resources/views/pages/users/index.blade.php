@@ -81,4 +81,14 @@
             </table>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#usersTable').dataTable( {
+                "language": {
+                    "url": "{{asset('../resources/lang/de/dataTables.lang')}}"
+                }
+            } );
+        });
+    </script>
 @stop

@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\FundingProgramme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -47,7 +48,22 @@ class CategoriesController extends Controller
 
     public function delete(Category $category)
     {
+        if ($this->categoryBelongsToFundingProgramme($category->id)) {
+            return redirect()->to('categories')->withErrors([trans('error.category_not_deletable')]);
+        }
+        foreach ($category->children as $child) {
+            if ($this->categoryBelongsToFundingProgramme($child->id)) {
+                return redirect()->to('categories')->withErrors([trans('error.category_not_deletable')]);
+            }
+        }
+
         $category->delete();
         return redirect()->to('categories');
+    }
+
+    protected function categoryBelongsToFundingProgramme($categoryId)
+    {
+        $fundingProgramme = FundingProgramme::where('category_id', '=', $categoryId)->first();
+        return $fundingProgramme != null;
     }
 }

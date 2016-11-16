@@ -2,7 +2,11 @@
 
 return [
    'title' => 'Förderdatenbank',
-
+    'user_profile' => 'Profil bearbeiten',
+    'logout' => 'Logout',
+    'funding_programmes' => 'Förderprogramme',
+    'categories' => 'Kategorien',
+    'user_management' => 'Benutzerverwaltung',
     'buttons' => [
         'save' => 'Speichern',
         'cancel' => 'Abbrechen',

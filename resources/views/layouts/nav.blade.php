@@ -14,10 +14,10 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="{{url('profile')}}"><i class="fa fa-user fa-fw"></i> {{trans('layout.user_profile')}}</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{{url('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{url('logout')}}"><i class="fa fa-sign-out fa-fw"></i> {{trans('layout.logout')}}</a>
                     </li>
                 </ul>
             </li>
@@ -28,17 +28,17 @@
                 <ul class="nav" id="side-menu">
                     @if (Entrust::ability('admin,employee,guest', 'view-funding-programmes'))
                     <li>
-                        <a href="{{url('funding_programmes')}}"><i class="fa fa-tasks fa-fw"></i> Förderprogramme</a>
+                        <a href="{{url('funding_programmes')}}"><i class="fa fa-tasks fa-fw"></i> {{trans('layout.funding_programmes')}}</a>
                     </li>
                     @endif
                     @if (Entrust::ability('admin,employee,guest', 'view-categories'))
                     <li>
-                        <a href="{{url('categories')}}"><i class="fa fa-tags fa-fw"></i> Kategorien</a>
+                        <a href="{{url('categories')}}"><i class="fa fa-tags fa-fw"></i> {{trans('layout.categories')}}</a>
                     </li>
                     @endif
                     @if (Entrust::ability('admin', 'user-management'))
                     <li>
-                        <a href="{{url('users')}}"><i class="fa fa-users fa-fw"></i> Benutzerverwaltung</a>
+                        <a href="{{url('users')}}"><i class="fa fa-users fa-fw"></i> {{trans('layout.user_management')}}</a>
                     </li>
                     @endif
                 </ul>

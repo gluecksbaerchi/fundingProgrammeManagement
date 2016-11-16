@@ -4,6 +4,7 @@ return [
     'title' => 'Benutzer',
     'title_edit' => 'Benutzer bearbeiten',
     'title_new' => 'Benutzer hinzufügen',
+    'title_edit_profile' => 'Profil bearbeiten',
     'add_user' => 'Benutzer hinzufügen',
     'username' => 'Username',
     'password' => 'Passwort',
@@ -12,5 +13,6 @@ return [
     'deleteUserModal' => [
         'title' => 'Benutzer löschen',
         'body' => 'User ":name" wirklich löschen?'
-    ]
+    ],
+    'profile_update_success' => 'Nutzerdaten erfolgreich geändert.'
 ];

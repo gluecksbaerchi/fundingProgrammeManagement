@@ -34,6 +34,11 @@ class UsersController extends Controller
 
     public function save(Request $request, $id)
     {
+        if ($id == \Auth::user()->id) {
+            return redirect()->to('profile')
+                ->withErrors([trans('error.edit_own_profile')]);
+        }
+
         $request->flashOnly(['name', 'role']);
         $this->validate($request, [
             'name' => 'required|max:255',
@@ -66,6 +71,42 @@ class UsersController extends Controller
         $user->attachRole($role);
 
         return redirect()->to('users');
+    }
+
+    public function profile(Request $request)
+    {
+        $user = \Auth::user();
+        if ($request->old('name')) {
+            $user->name = $request->old('name');
+        }
+        return view('pages.users.profile', ['user' => $user]);
+    }
+
+    public function saveProfile(Request $request)
+    {
+        $request->flashOnly(['name']);
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'password' => 'required|confirmed'
+        ]);
+
+        $user = \Auth::user();
+        // check that user name not exist
+        $user2 = User::where('name', '=', Input::get('name'))
+            ->where('id', '!=', $user->id)
+            ->first();
+        if ($user2 != null) {
+            return redirect()->to('profile')
+                ->withErrors([trans('error.duplicate_username')]);
+        }
+
+        // save user
+        $user->name = Input::get('name');
+        $user->password = bcrypt(Input::get('password'));
+        $user->saveOrFail();
+
+        \Session::flash('message', trans('users.profile_update_success'));
+        return redirect()->to('profile');
     }
 
     public function delete(User $user)

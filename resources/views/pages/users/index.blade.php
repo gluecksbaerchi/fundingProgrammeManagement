@@ -40,15 +40,20 @@
                         <td>{{$user->name}}</td>
                         <td>{{trans('auth.roles.'.$user->getRole()->name)}}</td>
                         <td>
+                            @if ($user->id != \Auth::user()->id)
                             <a class="btn btn-default" title="{{trans('layout.buttons.edit')}}"
                                 href="{{url('users/'.$user->id.'/edit')}}">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            @if ($user->id != \Auth::user()->id)
                             <button class="btn btn-default" title="{{trans('layout.buttons.delete')}}"
                                     data-toggle="modal" data-target="#deleteUserModal{{$user->id}}">
                                 <i class="fa fa-trash"></i>
                             </button>
+                            @else
+                                <a class="btn btn-default" title="{{trans('layout.buttons.edit')}}"
+                                   href="{{url('profile')}}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
                             @endif
                         </td>
                     </tr>

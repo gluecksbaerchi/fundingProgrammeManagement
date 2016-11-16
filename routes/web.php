@@ -35,6 +35,9 @@ Route::get('categories/{id}/edit', 'CategoriesController@edit')->middleware(['au
 Route::post('categories/{id}/edit', 'CategoriesController@save')->middleware(['auth', 'permission:create-categories']);
 Route::get('categories/{category}/delete', 'CategoriesController@delete')->middleware(['auth', 'permission:delete-categories']);
 
+Route::get('profile', 'UsersController@profile')->middleware(['auth', 'permission:edit-profile']);
+Route::post('profile', 'UsersController@saveProfile')->middleware(['auth', 'permission:edit-profile']);
+
 Route::group(['middleware' => ['auth', 'role:admin', 'permission:user-management']], function() {
     Route::get('users', 'UsersController@show');
     Route::get('users/{id}/edit', 'UsersController@edit');

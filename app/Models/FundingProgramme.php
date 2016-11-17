@@ -49,6 +49,16 @@ class FundingProgramme extends Model
         $this->attributes['contact_id'] = empty($value) ? null : $value;
     }
 
+    public function getRuntimeFromAttribute($value)
+    {
+        return is_object($value) ? $value->format('Y-m-d H:i:s') : $value;
+    }
+
+    public function getRuntimeToAttribute($value)
+    {
+        return is_object($value) ? $value->format('Y-m-d H:i:s') : $value;
+    }
+
     public function getTargetWhatAttribute($value)
     {
         return json_decode($value);

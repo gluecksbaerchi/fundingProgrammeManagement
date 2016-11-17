@@ -12,13 +12,29 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(\App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(\App\Models\FundingProgramme::class, function (Faker\Generator $faker) {
+    return [
+        'category_id' => factory(\App\Models\Category::class)->create()->id,
+        'name' => $faker->name,
+        'organisation' => $faker->name . ' org',
+        'user_id' => factory(\App\Models\User::class)->create()->id
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(\App\Models\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name
     ];
 });

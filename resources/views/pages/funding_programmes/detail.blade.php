@@ -116,9 +116,9 @@
                         <div class="row">
                             <label class="col-md-5">{{trans('funding_programmes.runtime')}}</label>
                             <div class="col-md-7">
-                                {{trans('funding_programmes.runtime_from')}}
+                                {{trans('funding_programmes.from')}}
                                 {{date('d.m.Y', strtotime($fundingProgramme->runtime_from)) ?: '-'}}
-                                {{trans('funding_programmes.runtime_to')}}
+                                {{trans('funding_programmes.to')}}
                                 {{date('d.m.Y', strtotime($fundingProgramme->runtime_to)) ?: '-'}}
                             </div>
                         </div>
@@ -158,6 +158,25 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="col-md-2 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{trans('funding_programmes.history')}}
+                </div>
+                <div class="panel-body" style="max-height: 565px; overflow-y: scroll">
+                    @foreach ($fundingProgramme->history as $entry)
+                    <div class="alert panel-default">
+                        {{trans('funding_programmes.user')}}: {{$entry->user->name}} <br/>
+                        {{trans('funding_programmes.date')}}: {{date('d.m.Y H:i', strtotime($entry->updated_at))}} <br/>
+                        {{trans('funding_programmes.changes')}}:
+                        @foreach ($entry->changes as $key => $value)
+                            @if (!$loop->first) / @endif {{trans('funding_programmes.'.$key)}}
+                        @endforeach
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 

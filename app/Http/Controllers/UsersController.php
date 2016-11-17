@@ -70,6 +70,7 @@ class UsersController extends Controller
         $user->detachRoles();
         $user->attachRole($role);
 
+        \Session::flash('message', trans('users.update_success'));
         return redirect()->to('users');
     }
 

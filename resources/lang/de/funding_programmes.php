@@ -21,10 +21,13 @@ return [
     'funding_sum' => 'Förderhöchstsumme',
     'application' => 'Antragsabgabe',
     'runtime' => 'Programmlaufzeit',
-    'runtime_from' => 'von',
-    'runtime_to' => 'bis',
+    'runtime_from' => 'Programmlaufzeit (von)',
+    'runtime_to' => 'Programmlaufzeit (bis)',
+    'from' => 'von',
+    'to' => 'bis',
     'link' => 'Internet',
     'contact' => 'Ansprechpartner',
+    'contact_id' => 'Ansprechpartner',
     'multiple_select_hint' => '(Für Mehrfachauswahl "Strg" gedrückt halten.)',
     'deleteFundingProgrammeModal' => [
         'title' => 'Förderprogramm löschen',
@@ -47,5 +50,11 @@ return [
         'internet' => 'Internet'
     ],
     'select_filter' => 'Filteroptionen auswählen',
-    'select' => 'Bitte wählen'
+    'select' => 'Bitte wählen',
+    'history' => 'Letzte Änderungen',
+    'user' => 'Benutzer',
+    'date' => 'Datum',
+    'changes' => 'Geändert',
+    'update_success' => 'Das Förderprogramm wurde erfolgreich gespeichert.',
+    'no_contact' => 'Es sind noch keine Ansprechpartner vorhanden.'
 ];

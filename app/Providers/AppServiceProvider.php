@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\FundingProgramme;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        FundingProgramme::updating( function ($fundingProgramme) {
+            $actualFundingProgramme = FundingProgramme::find($fundingProgramme->id);
+            $copy = $fundingProgramme->replicate();
+            $copy->actual_id = $actualFundingProgramme->id;
+            $copy->user_id = \Auth::user()->id;
+            $copy->changes = $fundingProgramme->compareWith($actualFundingProgramme);
+            return $copy->save();
+        });
     }
 
     /**

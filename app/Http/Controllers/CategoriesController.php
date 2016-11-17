@@ -43,6 +43,7 @@ class CategoriesController extends Controller
         }
         $category->saveOrFail();
 
+        \Session::flash('message', trans('categories.update_success'));
         return redirect()->to('categories');
     }
 

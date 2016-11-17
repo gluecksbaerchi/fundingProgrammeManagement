@@ -11,5 +11,6 @@ return [
     'deleteCategoryModal' => [
         'title' => 'Kategorie löschen',
         'body' => 'Möchten Sie die Kategorie ":name" und all ihre Unterkategorien wirklich löschen?'
-    ]
+    ],
+    'update_success' => 'Die Kategorie wurde erfolgreich gespeichert.'
 ];

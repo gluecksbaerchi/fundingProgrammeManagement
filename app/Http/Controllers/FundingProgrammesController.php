@@ -21,7 +21,7 @@ class FundingProgrammesController extends Controller
     {
         $targetWhatOptions = $this->getTargetWhatOptions();
         $categories = Category::all();
-        $fundingProgrammes = FundingProgramme::all();
+        $fundingProgrammes = FundingProgramme::actual()->get();
         return view('pages.funding_programmes.index', [
             'fundingProgrammes' => $fundingProgrammes,
             'targetWhatOptions' => $targetWhatOptions,
@@ -65,6 +65,7 @@ class FundingProgrammesController extends Controller
         $fundingProgramme->user_id = \Auth::user()->id;
         $fundingProgramme->saveOrFail();
 
+        \Session::flash('message', trans('funding_programmes.update_success'));
         return redirect()->to('funding_programmes');
     }
 
@@ -103,7 +104,7 @@ class FundingProgrammesController extends Controller
      */
     protected function getFilteredFundingProgrammes($categoryIds, $targetWhat)
     {
-        $fundingProgrammes = FundingProgramme::select();
+        $fundingProgrammes = FundingProgramme::actual();
         if (count($categoryIds) > 0) {
             foreach ($categoryIds as $id) {
                 $categoryIds = array_merge($categoryIds, Category::find($id)->children()->pluck('id')->toArray());

@@ -14,5 +14,6 @@ return [
         'title' => 'Benutzer löschen',
         'body' => 'User ":name" wirklich löschen?'
     ],
-    'profile_update_success' => 'Nutzerdaten erfolgreich geändert.'
+    'profile_update_success' => 'Nutzerdaten erfolgreich geändert.',
+    'update_success' => 'Der Benutzer wurde erfolgreich gespeichert.'
 ];

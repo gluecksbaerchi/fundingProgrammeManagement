@@ -28,11 +28,14 @@ class CreateFundingProgrammesTable extends Migration
             $table->dateTime('runtime_to')->nullable();
             $table->string('link')->nullable();
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('actual_id')->nullable();
+            $table->string('changes')->nullable();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('contact_id')->references('id')->on('contacts');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('actual_id')->references('id')->on('funding_programmes')->onDelete('cascade');
         });
     }
 

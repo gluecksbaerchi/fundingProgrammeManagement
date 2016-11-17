@@ -158,6 +158,9 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tbody>
+                                @if (count($contacts) == 0)
+                                    {{trans('funding_programmes.no_contact')}}
+                                @endif
                                 @foreach($contacts as $contact)
                                     <tr>
                                         <td>

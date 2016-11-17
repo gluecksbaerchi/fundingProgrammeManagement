@@ -19,6 +19,9 @@
 
     <div class="row">
         <div class="col-md-8 col-lg-7">
+            @if (\Session::has('message'))
+                <div id="message" class="alert alert-success">{{ \Session::get('message') }}</div>
+            @endif
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
                     <ul>

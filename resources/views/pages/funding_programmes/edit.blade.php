@@ -202,6 +202,8 @@
     </div>
 
     <script type="text/javascript">
+        autosize($('textarea'));
+
         $('.datepicker').datepicker({
             format: 'dd.mm.yyyy'
         });

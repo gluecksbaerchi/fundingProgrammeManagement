@@ -75,7 +75,7 @@
                     <td>
                         <div class="row">
                             <label class="col-md-5">{{trans('funding_programmes.target_what_description')}}</label>
-                            <div class="col-md-7">{{$fundingProgramme->target_what_description ?: '-'}}</div>
+                            <div class="col-md-7 pre-wrap">{{$fundingProgramme->target_what_description ?: '-'}}</div>
                         </div>
                     </td>
                 </tr>
@@ -83,7 +83,7 @@
                     <td>
                         <div class="row">
                             <label class="col-md-5">{{trans('funding_programmes.target_who')}}</label>
-                            <div class="col-md-7">{{$fundingProgramme->target_who ?: '-'}}</div>
+                            <div class="col-md-7 pre-wrap">{{$fundingProgramme->target_who ?: '-'}}</div>
                         </div>
                     </td>
                 </tr>
@@ -91,7 +91,7 @@
                     <td>
                         <div class="row">
                             <label class="col-md-5">{{trans('funding_programmes.funding_sum')}}</label>
-                            <div class="col-md-7">{{$fundingProgramme->funding_sum ?: '-'}}</div>
+                            <div class="col-md-7 pre-wrap">{{$fundingProgramme->funding_sum ?: '-'}}</div>
                         </div>
                     </td>
                 </tr>
@@ -99,7 +99,7 @@
                     <td>
                         <div class="row">
                             <label class="col-md-5">{{trans('funding_programmes.application')}}</label>
-                            <div class="col-md-7">{{$fundingProgramme->application ?: '-'}}</div>
+                            <div class="col-md-7 pre-wrap">{{$fundingProgramme->application ?: '-'}}</div>
                         </div>
                     </td>
                 </tr>

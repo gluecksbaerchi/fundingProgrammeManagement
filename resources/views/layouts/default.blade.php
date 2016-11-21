@@ -52,6 +52,8 @@
     <script src="{{asset('../resources/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('../resources/bower_components/datatables/media/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{asset('../resources/bower_components/datatables-responsive/js/dataTables.responsive.js')}}"></script>
+
+    <script src="{{asset('../resources/bower_components/autosize/dist/autosize.min.js')}}"></script>
 </head>
 <body>
 <div class="flex-center position-ref full-height">

@@ -16,30 +16,39 @@ class ContactsController extends Controller
 {
     public function show()
     {
-
+        $contacts = Contact::all();
+        return view('pages.contacts.index', ['contacts' => $contacts]);
     }
 
     public function edit(Request $request, $id)
     {
-
+        $contact = ($id !== '0') ? Contact::findOrFail($id) : new Contact();
+        $contact->fill($request->old());
+        return view('pages.contacts.edit', ['contact' => $contact]);
     }
 
     public function save(Request $request, $id)
     {
-        // todo: validation
         $this->validate($request, [
-            'name' => 'required|max:255'
+            'name' => 'required|max:255',
+            'email' => 'email'
         ]);
 
         $contact = ($id !== '0') ? Contact::findOrFail($id) : new Contact();
         $contact->fill(Input::all());
         $contact->saveOrFail();
 
-        return json_encode($contact);
+        if ($request->ajax()) {
+            return json_encode($contact);
+        }
+
+        \Session::flash('message', trans('contacts.update_success'));
+        return redirect()->to('contacts');
     }
 
     public function delete(Contact $contact)
     {
-
+        $contact->delete();
+        return redirect()->to('contacts');
     }
 }

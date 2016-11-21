@@ -27,6 +27,12 @@ Route::get('funding_programmes/{fundingProgramme}/delete', 'FundingProgrammesCon
 Route::post('funding_programmes/filter', 'FundingProgrammesController@filter')->middleware(['auth', 'permission:view-funding-programmes']);
 
 Route::get('contacts', 'ContactsController@show')->middleware(['auth', 'permission:view-funding-programmes']);
+Route::get('contacts/{fundingProgramme}', 'ContactsController@detail')->middleware(['auth', 'permission:view-funding-programmes']);
+Route::get('contacts/{id}/edit', 'ContactsController@edit')->middleware(['auth', 'permission:create-funding-programmes']);
+Route::post('contacts/{id}/edit', 'ContactsController@save')->middleware(['auth', 'permission:create-funding-programmes']);
+Route::get('contacts/{contact}/delete', 'ContactsController@delete')->middleware(['auth', 'permission:delete-funding-programmes']);
+
+Route::get('contacts', 'ContactsController@show')->middleware(['auth', 'permission:view-funding-programmes']);
 Route::get('contacts/{id}/edit', 'ContactsController@edit')->middleware(['auth', 'permission:create-funding-programmes']);
 Route::post('contacts/{id}/edit', 'ContactsController@save')->middleware(['auth', 'permission:create-funding-programmes']);
 Route::get('contacts/{contact}/delete', 'ContactsController@delete')->middleware(['auth', 'permission:delete-funding-programmes']);

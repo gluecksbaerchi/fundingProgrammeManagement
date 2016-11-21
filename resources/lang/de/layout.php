@@ -5,6 +5,7 @@ return [
     'user_profile' => 'Profil bearbeiten',
     'logout' => 'Logout',
     'funding_programmes' => 'Förderprogramme',
+    'contacts' => 'Ansprechpartner',
     'categories' => 'Kategorien',
     'user_management' => 'Benutzerverwaltung',
     'buttons' => [

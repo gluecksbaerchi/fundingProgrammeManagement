@@ -33,7 +33,7 @@ class CreateFundingProgrammesTable extends Migration
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('contact_id')->references('id')->on('contacts');
+            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('actual_id')->references('id')->on('funding_programmes')->onDelete('cascade');
         });

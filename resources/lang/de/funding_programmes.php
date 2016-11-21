@@ -38,17 +38,6 @@ return [
         'contact_list_btn' => 'Kontaktliste',
         'new_contact_btn' => 'Neuen Kontakt anlegen'
     ],
-    'contact_form' => [
-        'name' => 'Name',
-        'street' => 'Straße',
-        'street_nr' => 'Hausnummer',
-        'zip_code' => 'PLZ',
-        'city' => 'Stadt',
-        'tel' => 'Tel.',
-        'fax' => 'Fax',
-        'email' => 'E-Mail',
-        'internet' => 'Internet'
-    ],
     'select_filter' => 'Filteroptionen auswählen',
     'select' => 'Bitte wählen',
     'history' => 'Letzte Änderungen',

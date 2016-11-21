@@ -36,6 +36,9 @@
                     <li>
                         <a href="{{url('funding_programmes')}}"><i class="fa fa-tasks fa-fw"></i> {{trans('layout.funding_programmes')}}</a>
                     </li>
+                    <li>
+                        <a href="{{url('contacts')}}"><i class="fa fa-address-book fa-fw"></i> {{trans('layout.contacts')}}</a>
+                    </li>
                     @endif
                     @if (Entrust::ability('admin,employee,guest', 'view-categories'))
                     <li>

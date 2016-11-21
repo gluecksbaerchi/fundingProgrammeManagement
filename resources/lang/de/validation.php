@@ -38,7 +38,7 @@ return [
     'digits_between'       => 'Das :attribute müssen Zahlen zwischen :min and :max sein.',
     'dimensions'           => 'Das :attribute hat ungültige Imageformat Größe (Dimensionen).',
     'distinct'             => 'Das :attribute Feld hat einen doppelten Eintrag.',
-    'email'                => 'Das :attribute muss eine zulässige Email Adresse sein.',
+    'email'                => 'Die :attribute muss eine zulässige E-Mail Adresse sein.',
     'exists'               => 'Das ausgewählte :attribute ist ungültig.',
     'file'                 => 'Das :attribute muss eine Datei sein.',
     'filled'               => 'Das :attribute Feld ist erforderlich.',
@@ -118,7 +118,8 @@ return [
         'password' => 'Passwort',
         'runtime_to' => 'Programmlaufzeitende',
         'runtime_from' => 'Programmlaufzeitstart',
-        'name' => 'Name'
+        'name' => 'Name',
+        'email' => 'E-Mail'
     ],
 
 ];

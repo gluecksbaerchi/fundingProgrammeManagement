@@ -117,16 +117,16 @@
                                         {{$fundingProgramme->contact->zip_code}} {{$fundingProgramme->contact->city}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->tel)
-                                        {{trans('funding_programmes.contact_form.tel')}} {{$fundingProgramme->contact->tel}}<br/>
+                                        {{trans('contacts.tel')}} {{$fundingProgramme->contact->tel}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->fax)
-                                        {{trans('funding_programmes.contact_form.fax')}} {{$fundingProgramme->contact->fax}}<br/>
+                                        {{trans('contacts.fax')}} {{$fundingProgramme->contact->fax}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->email)
-                                        {{trans('funding_programmes.contact_form.email')}}: {{$fundingProgramme->contact->email}}<br/>
+                                        {{trans('contacts.email')}}: {{$fundingProgramme->contact->email}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->internet)
-                                        {{trans('funding_programmes.contact_form.internet')}}: {{$fundingProgramme->contact->internet}}
+                                        {{trans('contacts.internet')}}: {{$fundingProgramme->contact->internet}}
                                     @endif
                                 @endif
                             </div>
@@ -161,20 +161,20 @@
                                 @if (count($contacts) == 0)
                                     {{trans('funding_programmes.no_contact')}}
                                 @endif
-                                @foreach($contacts as $contact)
+                                @foreach($contacts as $currentContact)
                                     <tr>
                                         <td>
-                                            {{$contact->name}}<br/>
-                                            @if ($contact->street || $contact->street_nr){{$contact->street}} {{$contact->street_nr}}<br/> @endif
-                                            @if ($contact->zip_code != '' || $contact->city != '') {{$contact->zip_code}} {{$contact->city}}<br/> @endif
-                                            @if ($contact->tel != ''){{trans('funding_programmes.contact_form.tel')}} {{$contact->tel}}<br/> @endif
-                                            @if ($contact->fax != ''){{trans('funding_programmes.contact_form.fax')}} {{$contact->fax}}<br/> @endif
-                                            @if ($contact->email != ''){{trans('funding_programmes.contact_form.email')}}: {{$contact->email}}<br/> @endif
-                                            @if ($contact->internet != ''){{trans('funding_programmes.contact_form.internet')}}: {{$contact->internet}}<br/> @endif
+                                            {{$currentContact->name}}<br/>
+                                            @if ($currentContact->street || $currentContact->street_nr){{$currentContact->street}} {{$currentContact->street_nr}}<br/> @endif
+                                            @if ($currentContact->zip_code != '' || $currentContact->city != '') {{$currentContact->zip_code}} {{$currentContact->city}}<br/> @endif
+                                            @if ($currentContact->tel != ''){{trans('contacts.tel')}} {{$currentContact->tel}}<br/> @endif
+                                            @if ($currentContact->fax != ''){{trans('contacts.fax')}} {{$currentContact->fax}}<br/> @endif
+                                            @if ($currentContact->email != ''){{trans('contacts.email')}}: {{$currentContact->email}}<br/> @endif
+                                            @if ($currentContact->internet != ''){{trans('contacts.internet')}}: {{$currentContact->internet}}<br/> @endif
                                         </td>
                                         <td>
                                             <a class="btn btn-sm btn-default pull-right"
-                                                onclick="takeContact({{$contact}})">
+                                                onclick="takeContact({{$currentContact}})">
                                                 {{trans('layout.buttons.take')}}
                                             </a>
                                         </td>
@@ -186,51 +186,7 @@
                     </div>
                     <div id="newContact" hidden>
                         <form id="contactForm" method="post" action="{{url('contacts/0/edit')}}">
-                            {{ csrf_field() }}
-                            <div id="error_list" class="alert alert-danger" hidden>
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans('funding_programmes.contact_form.name')}}*</label>
-                                <input name="name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans('funding_programmes.contact_form.street')}} / {{trans('funding_programmes.contact_form.street_nr')}}</label>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <input name="street" class="form-control">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input name="street_nr" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans('funding_programmes.contact_form.zip_code')}} / {{trans('funding_programmes.contact_form.city')}}</label>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <input name="zip_code" class="form-control">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input name="city" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans('funding_programmes.contact_form.tel')}}</label>
-                                <input name="tel" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans('funding_programmes.contact_form.fax')}}</label>
-                                <input name="fax" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans('funding_programmes.contact_form.email')}}</label>
-                                <input type="email" name="email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans('funding_programmes.contact_form.internet')}}</label>
-                                <input name="internet" class="form-control">
-                            </div>
+                            @include('pages.contacts.form')
                         </form>
                     </div>
                 </div>
@@ -302,16 +258,16 @@
                 html += contact.zip_code + ' ' + contact.city + '<br/>';
             }
             if (contact.tel) {
-                html += '{{trans('funding_programmes.contact_form.tel')}} '+ contact.tel+'<br/>';
+                html += '{{trans('contacts.tel')}} '+ contact.tel+'<br/>';
             }
             if (contact.fax) {
-                html += '{{trans('funding_programmes.contact_form.fax')}} '+ contact.fax+'<br/>';
+                html += '{{trans('contacts.fax')}} '+ contact.fax+'<br/>';
             }
             if (contact.email) {
-                html += '{{trans('funding_programmes.contact_form.email')}}: '+ contact.email+'<br/>';
+                html += '{{trans('contacts.email')}}: '+ contact.email+'<br/>';
             }
             if (contact.internet) {
-                html += '{{trans('funding_programmes.contact_form.internet')}}: '+ contact.internet;
+                html += '{{trans('contacts.internet')}}: '+ contact.internet;
             }
             $('#selectedContact').html(html);
         }

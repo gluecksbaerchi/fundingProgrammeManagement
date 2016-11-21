@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        FundingProgramme::updating( function ($fundingProgramme) {
+        FundingProgramme::updating( function (FundingProgramme $fundingProgramme) {
             $actualFundingProgramme = FundingProgramme::find($fundingProgramme->id);
             $copy = $fundingProgramme->replicate();
             $copy->actual_id = $actualFundingProgramme->id;

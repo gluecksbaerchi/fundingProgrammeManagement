@@ -128,7 +128,7 @@ class FundingProgramme extends Model
         $changes = [];
         foreach ($this->fillable as $attribute) {
             if ($fundingProgramme->$attribute != $this->$attribute) {
-                $changes[$attribute] = $this->$attribute;
+                $changes[$attribute] = $attribute;
             }
         }
         return $changes;

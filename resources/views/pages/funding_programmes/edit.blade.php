@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>{{trans('funding_programmes.category')}}</label>
+                            <label>{{trans('funding_programmes.category')}}*</label>
                             <select name="category_id" class="form-control" required>
                                 @foreach ($categories as $category)
                                     <option value="{{$category->id}}"
@@ -39,11 +39,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>{{trans('funding_programmes.name')}}</label>
+                            <label>{{trans('funding_programmes.name')}}*</label>
                             <input name="name" class="form-control" value="{{$fundingProgramme->name}}" required>
                         </div>
                         <div class="form-group">
-                            <label>{{trans('funding_programmes.organisation')}}</label>
+                            <label>{{trans('funding_programmes.organisation')}}*</label>
                             <input name="organisation" class="form-control" value="{{$fundingProgramme->organisation}}" required>
                         </div>
                         <div class="form-group">
@@ -83,16 +83,16 @@
                         <div class="form-group">
                             <label>{{trans('funding_programmes.runtime')}}</label>
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-xs-5">
                                     <input name="runtime_from" class="form-control datepicker"
                                            @if ($fundingProgramme->runtime_from)
                                             value="{{date('d.m.Y', strtotime($fundingProgramme->runtime_from))}}"
                                            @endif>
                                 </div>
-                                <div class="col-md-2" style="text-align: center;">
+                                <div class="col-xs-2" style="text-align: center;">
                                     -
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-xs-5">
                                     <input name="runtime_to" class="form-control datepicker"
                                            @if ($fundingProgramme->runtime_to)
                                             value="{{date('d.m.Y', strtotime($fundingProgramme->runtime_to))}}"
@@ -187,8 +187,10 @@
                     <div id="newContact" hidden>
                         <form id="contactForm" method="post" action="{{url('contacts/0/edit')}}">
                             {{ csrf_field() }}
+                            <div id="error_list" class="alert alert-danger" hidden>
+                            </div>
                             <div class="form-group">
-                                <label>{{trans('funding_programmes.contact_form.name')}}</label>
+                                <label>{{trans('funding_programmes.contact_form.name')}}*</label>
                                 <input name="name" class="form-control" required>
                             </div>
                             <div class="form-group">
@@ -264,6 +266,7 @@
         };
         var submitNewContact = function () {
             var form = $('#contactForm');
+            $('#error_list').html('').hide();
             $.ajax({
                 url: form.attr('action'),
                 type: 'POST',
@@ -272,6 +275,16 @@
                     var contact = jQuery.parseJSON(contact);
                     setContactToView(contact);
                     $('#contactModal').modal('toggle');
+                },
+                error: function (error) {
+                    var errors = $.map($.parseJSON(error.responseText), function(el) { return el });
+                    var errorList = '<ul>';
+                    errors.forEach(function (err) {
+                        errorList += '<li>'+err+'</li>';
+                    });
+                    errorList += '</ul>';
+                    $('#error_list').html(errorList).show();
+                    $('#contactModal').scrollTop(0);
                 }
             });
         };

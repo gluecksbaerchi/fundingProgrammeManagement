@@ -5,12 +5,12 @@
             <h1 class="page-header">
                 <div class="row">
                     <div class="col-md-8 col-lg-7">
+                        {{trans('categories.title')}}
                         @if (Entrust::can('create-categories'))
-                        <a class="btn btn-primary btn-social pull-right" href="{{url('categories/0/edit')}}">
+                        <a class="btn btn-primary btn-social pull-right-md" href="{{url('categories/0/edit')}}">
                             <i class="fa fa-plus"></i> {{trans('categories.add_category')}}
                         </a>
                         @endif
-                        {{trans('categories.title')}}
                     </div>
                 </div>
             </h1>

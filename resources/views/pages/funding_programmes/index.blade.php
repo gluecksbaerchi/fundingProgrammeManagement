@@ -5,12 +5,12 @@
             <h1 class="page-header">
                 <div class="row">
                     <div class="col-md-12 col-lg-9">
+                        {{trans('funding_programmes.title')}}
                         @if (Entrust::can('create-funding-programmes'))
-                        <a class="btn btn-primary btn-social pull-right" href="{{url('funding_programmes/0/edit')}}">
+                        <a class="btn btn-primary btn-social pull-right-md" href="{{url('funding_programmes/0/edit')}}">
                             <i class="fa fa-plus"></i> {{trans('funding_programmes.add_funding_programme')}}
                         </a>
                         @endif
-                        {{trans('funding_programmes.title')}}
                     </div>
                 </div>
             </h1>

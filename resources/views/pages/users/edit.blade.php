@@ -25,19 +25,19 @@
         <form role="form" method="post" action="{{url('users/'.($user->id?$user->id:0).'/edit')}}">
             {{ csrf_field() }}
             <div class="form-group">
-                <label>{{trans('users.username')}}</label>
+                <label>{{trans('users.username')}}*</label>
                 <input name="name" class="form-control" value="{{$user->name}}" required>
             </div>
             <div class="form-group">
-                <label>{{trans('users.password')}}</label>
+                <label>{{trans('users.password')}}*</label>
                 <input name="password" type="password" class="form-control" required>
             </div>
             <div class="form-group">
-                <label>{{trans('users.password2')}}</label>
+                <label>{{trans('users.password2')}}*</label>
                 <input name="password_confirmation" type="password" class="form-control" required>
             </div>
             <div class="form-group">
-                <label>{{trans('users.role')}}</label>
+                <label>{{trans('users.role')}}*</label>
                 <select name="role" class="form-control" required>
                     @foreach ($roles as $role)
                         <option value="{{$role}}"

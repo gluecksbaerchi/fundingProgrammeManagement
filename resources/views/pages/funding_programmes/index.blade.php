@@ -40,10 +40,17 @@
                             <select name="category_id[]" multiple class="form-control selectpicker"
                                     title="{{trans('funding_programmes.select_filter')}}" onchange="filterFundingProgrammes()">
                                 @foreach ($categories as $category)
-                                    <option value="{{$category->id}}"
-                                            @if (session('category_filter') && in_array($category->id, session('category_filter'))) selected @endif
-                                            @if($category->hasChildren()) style="font-weight: bold" @endif
-                                    >{{$category->name}}</option>
+                                    @if ($category->parent_id == null)
+                                        <option value="{{$category->id}}"
+                                                @if (session('category_filter') && in_array($category->id, session('category_filter'))) selected @endif
+                                                style="font-weight: bold"
+                                        >{{$category->name}}</option>
+                                        @foreach ($category->children as $childCategory)
+                                            <option value="{{$childCategory->id}}"
+                                                    @if (session('category_filter') && in_array($childCategory->id, session('category_filter'))) selected @endif
+                                            >- {{$childCategory->name}}</option>
+                                        @endforeach
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

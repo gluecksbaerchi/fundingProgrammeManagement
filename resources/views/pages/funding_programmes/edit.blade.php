@@ -30,11 +30,21 @@
                             <label>{{trans('funding_programmes.category')}}*</label>
                             <select name="category_id" class="form-control" required>
                                 @foreach ($categories as $category)
-                                    <option value="{{$category->id}}"
-                                            @if ($fundingProgramme->category_id == $category->id)
-                                            selected
-                                            @endif
-                                    >{{$category->name}}</option>
+                                    @if ($category->parent_id == null)
+                                        <option value="{{$category->id}}"
+                                                @if ($fundingProgramme->category_id == $category->id)
+                                                    selected
+                                                @endif
+                                                style="font-weight: bold"
+                                        >{{$category->name}}</option>
+                                        @foreach ($category->children as $childCategory)
+                                            <option value="{{$childCategory->id}}"
+                                                    @if ($fundingProgramme->category_id == $category->id)
+                                                        selected
+                                                    @endif
+                                            >- {{$childCategory->name}}</option>
+                                        @endforeach
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

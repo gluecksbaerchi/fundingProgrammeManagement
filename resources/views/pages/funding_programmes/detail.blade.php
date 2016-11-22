@@ -31,6 +31,16 @@
         <div class="col-md-10 col-lg-8">
             <table class="table table-striped table-bordered">
                 <tbody>
+                @if ($fundingProgramme->category->getParent()->name)
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <label class="col-md-5">{{trans('categories.parent')}}</label>
+                                <div class="col-md-7">{{$fundingProgramme->category->getParent()->name}}</div>
+                            </div>
+                        </td>
+                    </tr>
+                @endif
                 <tr>
                     <td>
                         <div class="row">
@@ -107,7 +117,13 @@
                     <td>
                         <div class="row">
                             <label class="col-md-5">{{trans('funding_programmes.link')}}</label>
-                            <div class="col-md-7">{{$fundingProgramme->link ?: '-'}}</div>
+                            <div class="col-md-7">
+                                @if ($fundingProgramme->link)
+                                    <a href="//{{$fundingProgramme->link}}" target="_blank">{{$fundingProgramme->link}}</a>
+                                @else
+                                    -
+                                @endif
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -144,10 +160,12 @@
                                         {{trans('contacts.fax')}} {{$fundingProgramme->contact->fax}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->email)
-                                        {{trans('contacts.email')}}: {{$fundingProgramme->contact->email}}<br/>
+                                        {{trans('contacts.email')}}:
+                                        <a href="mailto:{{$fundingProgramme->contact->email}}">{{$fundingProgramme->contact->email}}<br/></a>
                                     @endif
                                     @if ($fundingProgramme->contact->internet)
-                                        {{trans('contacts.internet')}}: {{$fundingProgramme->contact->internet}}
+                                        {{trans('contacts.internet')}}:
+                                        <a href="//{{$fundingProgramme->contact->internet}}" target="_blank">{{$fundingProgramme->contact->internet}}</a>
                                     @endif
                                 @else
                                     -

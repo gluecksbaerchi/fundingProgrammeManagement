@@ -5,18 +5,20 @@
         <th>{{trans('funding_programmes.name')}}</th>
         <th>{{trans('funding_programmes.organisation')}}</th>
         <th>{{trans('funding_programmes.target_what')}}</th>
-        <th>{{trans('funding_programmes.link')}}</th>
         <th></th>
     </tr>
     </thead>
     <tbody>
     @foreach($fundingProgrammes as $fundingProgramme)
         <tr @if ($fundingProgramme->isOutdated()) style="background-color: #F2DEDE; color: #a94442;" @endif>
-            <td>{{$fundingProgramme->category->name}}</td>
+            <td>
+                @if ($fundingProgramme->category->getParent()->name)
+                    <span style="font-weight: bold; font-size: 10px;">{{$fundingProgramme->category->getParent()->name}}</span> <br/>
+                @endif
+                {{$fundingProgramme->category->name}}</td>
             <td>{{$fundingProgramme->name}}</td>
             <td>{{$fundingProgramme->organisation}}</td>
             <td>@if ($fundingProgramme->target_what) @foreach($fundingProgramme->target_what as $cost) {{$cost}} <br/>@endforeach @endif</td>
-            <td>{{$fundingProgramme->link}}</td>
             <td>
                 @if (Entrust::can('view-funding-programmes'))
                     <a class="btn btn-default" title="{{trans('layout.buttons.view')}}"

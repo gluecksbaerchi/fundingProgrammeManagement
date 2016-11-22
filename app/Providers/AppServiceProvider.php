@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         FundingProgramme::updating( function (FundingProgramme $fundingProgramme) {
             $actualFundingProgramme = FundingProgramme::find($fundingProgramme->id);
-            $copy = $fundingProgramme->replicate();
+            $copy = $actualFundingProgramme->replicate();
             $copy->actual_id = $actualFundingProgramme->id;
             $copy->user_id = \Auth::user()->id;
             $copy->changes = $fundingProgramme->compareWith($actualFundingProgramme);

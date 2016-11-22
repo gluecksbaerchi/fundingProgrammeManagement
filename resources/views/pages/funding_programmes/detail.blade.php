@@ -138,16 +138,16 @@
                                         {{$fundingProgramme->contact->zip_code}} {{$fundingProgramme->contact->city}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->tel)
-                                        {{trans('funding_programmes.contact_form.tel')}} {{$fundingProgramme->contact->tel}}<br/>
+                                        {{trans('contacts.tel')}} {{$fundingProgramme->contact->tel}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->fax)
-                                        {{trans('funding_programmes.contact_form.fax')}} {{$fundingProgramme->contact->fax}}<br/>
+                                        {{trans('contacts.fax')}} {{$fundingProgramme->contact->fax}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->email)
-                                        {{trans('funding_programmes.contact_form.email')}}: {{$fundingProgramme->contact->email}}<br/>
+                                        {{trans('contacts.email')}}: {{$fundingProgramme->contact->email}}<br/>
                                     @endif
                                     @if ($fundingProgramme->contact->internet)
-                                        {{trans('funding_programmes.contact_form.internet')}}: {{$fundingProgramme->contact->internet}}
+                                        {{trans('contacts.internet')}}: {{$fundingProgramme->contact->internet}}
                                     @endif
                                 @else
                                     -
@@ -170,11 +170,16 @@
                         {{trans('funding_programmes.user')}}: {{$entry->user->name}} <br/>
                         {{trans('funding_programmes.date')}}: {{date('d.m.Y H:i', strtotime($entry->updated_at))}} <br/>
                         {{trans('funding_programmes.changes')}}:
-                        @foreach ($entry->changes as $key => $value)
-                            @if (!$loop->first) / @endif {{trans('funding_programmes.'.$key)}}
+                        @foreach ($entry->changes as $value)
+                            @if (!$loop->first) / @endif {{trans('funding_programmes.'.$value)}}
                         @endforeach
                     </div>
                     @endforeach
+                    <div class="alert panel-default">
+                        {{trans('funding_programmes.user')}}: {{$fundingProgramme->user->name}} <br/>
+                        {{trans('funding_programmes.date')}}: {{date('d.m.Y H:i', strtotime($fundingProgramme->created_at))}} <br/>
+                        {{trans('funding_programmes.created')}}
+                    </div>
                 </div>
             </div>
         </div>

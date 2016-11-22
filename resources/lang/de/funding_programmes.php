@@ -45,5 +45,7 @@ return [
     'date' => 'Datum',
     'changes' => 'Geändert',
     'update_success' => 'Das Förderprogramm wurde erfolgreich gespeichert.',
-    'no_contact' => 'Es sind noch keine Ansprechpartner vorhanden.'
+    'no_contact' => 'Es sind noch keine Ansprechpartner vorhanden.',
+    'category_id' => 'Kategorie',
+    'created' => 'Das Förderprogramm wurde erstellt.'
 ];

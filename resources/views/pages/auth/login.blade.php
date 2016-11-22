@@ -2,6 +2,10 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <div class="col-sm-12">
+                <img src="{{asset('../resources/images/logo/logo.png')}}" class="center-block img-responsive"
+                     style="max-height: 150px; margin-top: 5%">
+            </div>
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">

@@ -9,7 +9,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            </a><a class="navbar-brand" href="{{url('funding_programmes')}}">
+            <a class="navbar-brand" href="{{url('funding_programmes')}}">
+                <img src="{{asset('../resources/images/logo/logo20x20.png')}}" class="img-responsive pull-left"
+                style=" margin-right: 10px">
                 {{trans('layout.title')}}
             </a>
         </div>

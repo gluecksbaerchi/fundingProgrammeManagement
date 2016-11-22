@@ -42,6 +42,7 @@
                                 @foreach ($categories as $category)
                                     <option value="{{$category->id}}"
                                             @if (session('category_filter') && in_array($category->id, session('category_filter'))) selected @endif
+                                            @if($category->hasChildren()) style="font-weight: bold" @endif
                                     >{{$category->name}}</option>
                                 @endforeach
                             </select>

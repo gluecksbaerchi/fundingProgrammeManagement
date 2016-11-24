@@ -18,5 +18,7 @@ return [
         'take' => 'Übernehmen',
         'view' => 'Ansehen',
         'back' => 'Zurück'
-    ]
+    ],
+    'error_details_404' => 'Die angefragte Seite wurde nicht gefunden.',
+    'error_details_403' => 'Dazu haben Sie keine Berechtigung.'
 ];

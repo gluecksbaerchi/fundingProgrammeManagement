@@ -51,8 +51,14 @@
                         <td>
                             @if ($contact->tel) {{trans('contacts.tel')}}: {{$contact->tel}} <br/> @endif
                             @if ($contact->fax) {{trans('contacts.fax')}}: {{$contact->fax}} <br/> @endif
-                            @if ($contact->email) {{trans('contacts.email')}}: {{$contact->email}} <br/> @endif
-                            @if ($contact->internet) {{trans('contacts.internet')}}: {{$contact->internet}} @endif
+                            @if ($contact->email)
+                                    {{trans('contacts.email')}}:
+                                    <a href="mailto:{{$contact->email}}">{{$contact->email}}</a> <br/>
+                            @endif
+                            @if ($contact->internet)
+                                    {{trans('contacts.internet')}}:
+                                    <a href="//{{$contact->internet}}" target="_blank">{{$contact->internet}}</a>
+                            @endif
                         </td>
                         <td>
                             @if (Entrust::can('create-funding-programmes'))

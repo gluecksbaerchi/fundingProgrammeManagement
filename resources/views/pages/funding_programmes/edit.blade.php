@@ -39,7 +39,7 @@
                                         >{{$category->name}}</option>
                                         @foreach ($category->children as $childCategory)
                                             <option value="{{$childCategory->id}}"
-                                                    @if ($fundingProgramme->category_id == $category->id)
+                                                    @if ($fundingProgramme->category_id == $childCategory->id)
                                                         selected
                                                     @endif
                                             >- {{$childCategory->name}}</option>

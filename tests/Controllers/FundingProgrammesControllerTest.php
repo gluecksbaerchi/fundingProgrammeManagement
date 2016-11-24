@@ -6,41 +6,12 @@ use App\Http\Controllers\FundingProgrammesController;
 use App\Models\Category;
 use App\Models\FundingProgramme;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Test\BaseDataProvidersTrait;
 use Test\TestCase;
 
 class FundingProgrammesControllerTest extends TestCase
 {
-    use DatabaseTransactions;
-
-    /**
-     * @return array
-     */
-    public function roleDataProvider()
-    {
-        return [
-            [
-                'admin',
-                'permissions' => [
-                    'createFP' => true,
-                    'deleteFP' => true
-                ]
-            ],
-            [
-                'employee',
-                'permissions' => [
-                    'createFP' => true,
-                    'deleteFP' => false
-                ]
-            ],
-            [
-                'guest',
-                'permissions' => [
-                    'createFP' => false,
-                    'deleteFP' => false
-                ]
-            ],
-        ];
-    }
+    use DatabaseTransactions, BaseDataProvidersTrait;
 
     public static function tralala(){
         return factory(Category::class)->create();
@@ -207,7 +178,7 @@ class FundingProgrammesControllerTest extends TestCase
 
         $countFP2 = FundingProgramme::count();
         if ($permissions['createFP']) {
-            $this->assertTrue($countFP2 == $countFP);
+            $this->assertTrue($countFP2 == ($countFP + 1));
             $this->seeInDatabase('funding_programmes', [
                 'name' => $validData['name']
             ]);

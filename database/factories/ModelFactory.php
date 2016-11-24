@@ -38,3 +38,10 @@ $factory->define(\App\Models\Category::class, function (Faker\Generator $faker) 
         'name' => $faker->name
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(\App\Models\Contact::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name
+    ];
+});

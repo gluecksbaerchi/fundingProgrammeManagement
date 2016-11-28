@@ -13,11 +13,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(\App\Models\User::class, function (Faker\Generator $faker) {
-    static $password;
-
     return [
         'name' => $faker->name,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => bcrypt('12345678'),
         'remember_token' => str_random(10),
     ];
 });

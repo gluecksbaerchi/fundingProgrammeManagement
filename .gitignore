@@ -19,4 +19,4 @@ vendor/
 composer.lock
 bower_components
 logo/
-coverage/
+reports/

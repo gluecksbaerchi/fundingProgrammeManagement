@@ -13,8 +13,6 @@ return [
     |
     */
 
-    // Todo: translate
-
     'accepted'             => 'Das :attribute muss akzeptiert werden.',
     'active_url'           => 'Das :attribute ist keine gültige URL.',
     'after'                => 'Das :attribute muss ein Datum nach dem :date sein.',

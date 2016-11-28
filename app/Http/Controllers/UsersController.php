@@ -36,7 +36,7 @@ class UsersController extends Controller
     {
         if ($id == \Auth::user()->id) {
             return redirect()->to('profile')
-                ->withErrors([trans('error.edit_own_profile')]);
+                ->withErrors(['own_user' => trans('error.edit_own_profile')]);
         }
 
         $request->flashOnly(['name', 'role']);
@@ -52,7 +52,7 @@ class UsersController extends Controller
             ->first();
         if ($user != null) {
             return redirect()->to('users/'.$id.'/edit')
-                ->withErrors([trans('error.duplicate_username')]);
+                ->withErrors(['duplicate_username' => trans('error.duplicate_username')]);
         }
 
         // find the role for the user
@@ -114,7 +114,7 @@ class UsersController extends Controller
     {
         if (\Auth::user()->id == $user->id) {
             return redirect()->to('users')
-                ->withErrors([trans('error.not_allowed_delete_own_user')]);
+                ->withErrors(['own_user' => trans('error.not_allowed_delete_own_user')]);
         }
 
         $user->detachRoles();

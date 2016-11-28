@@ -62,7 +62,7 @@ class UsersControllerTest extends TestCase
         $loggedInUser = $this->getUserWithRole($roleName);
         $validData = $this->getValidUserData();
 
-        $category = factory(User::class)->create();
+        $user = factory(User::class)->create();
 
         $countUsers = User::count();
         $this->dontSeeInDatabase('users', [
@@ -71,7 +71,7 @@ class UsersControllerTest extends TestCase
 
         $this->actingAs($loggedInUser)->call(
             'POST',
-            '/users/'.$category->id.'/edit',
+            '/users/'.$user->id.'/edit',
             $validData
         );
 
@@ -116,22 +116,74 @@ class UsersControllerTest extends TestCase
 
     public function test_not_possible_to_update_own_user()
     {
-        // TODO: implement
+        $loggedInUser = $this->getUserWithRole('admin');
+        $validData = $this->getValidUserData();
+
+        $this->dontSeeInDatabase('users', [
+            'name' => $validData['name']
+        ]);
+
+        $this->actingAs($loggedInUser)->call(
+            'POST',
+            '/users/'.$loggedInUser->id.'/edit',
+            $validData
+        );
+
+        $this->dontSeeInDatabase('users', [
+            'name' => $validData['name']
+        ]);
+        $this->assertSessionHasErrors('own_user');
     }
 
     public function test_not_possible_to_delete_own_user()
     {
-        // TODO: implement
+        $loggedInUser = $this->getUserWithRole('admin');
+
+        $this->actingAs($loggedInUser)->call(
+            'GET',
+            '/users/'.$loggedInUser->id.'/delete'
+        );
+
+        $this->seeInDatabase('users', [
+            'name' => $loggedInUser->name
+        ]);
+
+        $this->assertSessionHasErrors('own_user');
     }
 
     public function test_not_possible_to_save_user_with_existing_user_name()
     {
-        // TODO: implement
+        $loggedInUser = $this->getUserWithRole('admin');
+        $invalidData = $this->getValidUserData();
+        $invalidData['name'] = $loggedInUser->name;
+
+        $this->actingAs($loggedInUser)->call(
+            'POST',
+            '/users/0/edit',
+            $invalidData
+        );
+
+        $this->assertSessionHasErrors('duplicate_username');
     }
 
     public function test_edit_profile()
     {
-        // TODO: implement
+        $loggedInUser = $this->getUserWithRole('admin');
+        $validData = $this->getValidUserData();
+
+        $this->dontSeeInDatabase('users', [
+            'name' => $validData['name']
+        ]);
+
+        $this->actingAs($loggedInUser)->call(
+            'POST',
+            '/profile',
+            $validData
+        );
+
+        $this->seeInDatabase('users', [
+            'name' => $validData['name']
+        ]);
     }
 
     protected function getValidUserData()

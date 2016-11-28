@@ -91,7 +91,8 @@
                 "language": {
                     "url": "{{asset('../resources/lang/de/dataTables.lang')}}"
                 },
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Alle"]]
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Alle"]],
+                "stateSave": true
             } );
         });
     </script>

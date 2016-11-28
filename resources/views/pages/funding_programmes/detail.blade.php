@@ -132,10 +132,14 @@
                         <div class="row">
                             <label class="col-md-5">{{trans('funding_programmes.runtime')}}</label>
                             <div class="col-md-7">
-                                {{trans('funding_programmes.from')}}
-                                {{date('d.m.Y', strtotime($fundingProgramme->runtime_from)) ?: '-'}}
-                                {{trans('funding_programmes.to')}}
-                                {{date('d.m.Y', strtotime($fundingProgramme->runtime_to)) ?: '-'}}
+                                @if ($fundingProgramme->runtime_from)
+                                    {{trans('funding_programmes.from')}}
+                                    {{date('d.m.Y', strtotime($fundingProgramme->runtime_from))}}
+                                @endif
+                                @if ($fundingProgramme->runtime_to)
+                                    {{trans('funding_programmes.to')}}
+                                    {{date('d.m.Y', strtotime($fundingProgramme->runtime_to))}}
+                                @endif
                             </div>
                         </div>
                     </td>

@@ -57,7 +57,7 @@
                             @endif
                             @if ($contact->internet)
                                     {{trans('contacts.internet')}}:
-                                    <a href="//{{$contact->internet}}" target="_blank">{{$contact->internet}}</a>
+                                    <a href="{{$contact->internet}}" target="_blank">{{$contact->internet}}</a>
                             @endif
                         </td>
                         <td>

@@ -2,10 +2,13 @@
 
 namespace Test\Models;
 
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Test\TestCase;
 
 class UserTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function roleDataProvider()
     {
         return [

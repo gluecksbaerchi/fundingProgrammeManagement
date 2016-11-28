@@ -3,10 +3,13 @@
 namespace Test\Models;
 
 use App\Models\Category;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Test\TestCase;
 
 class CategoryTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function test_get_parent_returns_parent()
     {
         $category = factory(Category::class)->create();

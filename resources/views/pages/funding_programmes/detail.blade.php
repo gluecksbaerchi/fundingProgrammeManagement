@@ -119,7 +119,7 @@
                             <label class="col-md-5">{{trans('funding_programmes.link')}}</label>
                             <div class="col-md-7">
                                 @if ($fundingProgramme->link)
-                                    <a href="//{{$fundingProgramme->link}}" target="_blank">{{$fundingProgramme->link}}</a>
+                                    <a href="{{$fundingProgramme->link}}" target="_blank">{{$fundingProgramme->link}}</a>
                                 @else
                                     -
                                 @endif
@@ -165,7 +165,7 @@
                                     @endif
                                     @if ($fundingProgramme->contact->internet)
                                         {{trans('contacts.internet')}}:
-                                        <a href="//{{$fundingProgramme->contact->internet}}" target="_blank">{{$fundingProgramme->contact->internet}}</a>
+                                        <a href="{{$fundingProgramme->contact->internet}}" target="_blank">{{$fundingProgramme->contact->internet}}</a>
                                     @endif
                                 @else
                                     -

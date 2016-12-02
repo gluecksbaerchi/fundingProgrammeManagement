@@ -26,7 +26,7 @@ class CreateFundingProgrammesTable extends Migration
             $table->text('application')->nullable();
             $table->dateTime('runtime_from')->nullable();
             $table->dateTime('runtime_to')->nullable();
-            $table->string('link')->nullable();
+            $table->text('link')->nullable();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('actual_id')->nullable();
             $table->string('changes')->nullable();

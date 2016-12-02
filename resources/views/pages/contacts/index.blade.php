@@ -18,7 +18,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-8 col-lg-7">
+        <div class="col-md-9 col-lg-8">
             @if (\Session::has('message'))
                 <div id="message" class="alert alert-success">{{ \Session::get('message') }}</div>
             @endif

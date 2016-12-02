@@ -71,7 +71,11 @@
                 </div>
             </form>
 
-            <div id="tablePlaceholder"></div>
+            <div id="tablePlaceholder">
+                <div class="text-center" style="margin-top: 40px">
+                    <i class="fa fa-refresh fa-spin" style="font-size:50px"></i>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -23,7 +23,7 @@ return [
     'runtime' => 'Programmlaufzeit',
     'runtime_from' => 'Programmlaufzeit (von)',
     'runtime_to' => 'Programmlaufzeit (bis)',
-    'from' => 'von',
+    'from' => 'vom',
     'to' => 'bis',
     'link' => 'Internet',
     'contact' => 'Ansprechpartner',

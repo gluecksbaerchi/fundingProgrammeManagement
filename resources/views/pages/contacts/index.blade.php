@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">
                 <div class="row">
-                    <div class="col-md-8 col-lg-7">
+                    <div class="col-md-9 col-lg-8">
                         {{trans('contacts.title')}}
                         @if (Entrust::can('create-funding-programmes'))
                         <a class="btn btn-primary btn-social pull-right-md" href="{{url('contacts/0/edit')}}">
